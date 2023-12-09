@@ -43,6 +43,11 @@ function Start()
     change.innerHTML="Game in Progress";
     
 }
+function Reset()
+{
+    location.href="game2.html";
+
+}
 
 function hintSpot(pieceId)
 {

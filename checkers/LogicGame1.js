@@ -46,11 +46,13 @@ function Reset()
 //game 1
 function hintSpot(pieceId)
 {
-    
+   
 	if(player1==true&& noEnemy==true)
 	{
+        
         let index =0;
     let piecePosition= blackPiecePostions[pieceId];
+    
         for(index; index<2; index++)
         {
             if(gameBoard[piecePosition+7]==null&&index==0)
@@ -76,8 +78,12 @@ function hintSpot(pieceId)
     }//if there is an enemy than check behind it as well
     else if (player1==true && noEnemy==false)
     {
+        
         let index=0;
         let piecePosition= blackPiecePostions[pieceId];
+       
+        
+       
         for(index;index<4;index++)
         {
             if(gameBoard[piecePosition+7]!=null&&index==0)
@@ -106,7 +112,9 @@ function hintSpot(pieceId)
             }
             else if(gameBoard[piecePosition+7]==null && index==2)
             {
+               alert('x');
                 let cell3=blackPiecePostions[pieceId]+7;
+        
                 let hint3=document.getElementById('cell'+cell3);
                 hint3.classList.toggle('hint');   
                 untoggle[index]=hint3;
@@ -361,8 +369,8 @@ function hintspotforKings(pieceId)
 }
 function clickPiece(pieceId,cellNumber)
 {    
+  
     
-
    
     
     if(oldId==pieceId)// clicking the same piece
@@ -613,7 +621,6 @@ else if(player2==true)
     
      if(redPiecePositions[pieceId]==1)
     {
-        alert('x');
         let changePiece=document.getElementById(oldId);
         changePiece.classList.toggle('king');
         isKing[pieceId]=true;
@@ -621,7 +628,6 @@ else if(player2==true)
     }
      if(redPiecePositions[pieceId]==3)
     {
-        alert('xx');
         let changePiece=document.getElementById(oldId);
         changePiece.classList.toggle('king');
         isKing[pieceId]=true;
@@ -629,7 +635,6 @@ else if(player2==true)
     }
     if(redPiecePositions[pieceId]==5)
     {
-        alert('xxx');
         let changePiece=document.getElementById(oldId);
         changePiece.classList.toggle('king');
         isKing[pieceId]=true;
@@ -637,7 +642,6 @@ else if(player2==true)
     }
     if(redPiecePositions[pieceId]==7)
     {
-        alert('xxxx');
         let changePiece=document.getElementById(oldId);
         changePiece.classList.toggle('king');
         isKing[pieceId]=true;
@@ -1726,8 +1730,15 @@ function kingMovements(oldId,oldcellnumber,pieceId,cellNumber)
 else 
 {
     
-  
-    hopOverforPlayer1(oldId,oldcellnumber,pieceId,cellNumber);
+    if(player1==true)
+    {
+        hopOverforPlayer1(oldId,oldcellnumber,pieceId,cellNumber);
+    }
+    else
+    {
+        hopOverforPlayer2(oldId,oldcellnumber,pieceId,cellNumber);
+
+    }
     noEnemy=true;
     
 }
@@ -1984,7 +1995,7 @@ function iniateallPieces()
     isKing[pc6]=false;
     isKing[pc7]=false;
 
-    isKing[pc8]=true;
+    isKing[pc8]=false;
     isKing[pc9]=false;
     isKing[pc10]=false;
     isKing[pc11]=false;
@@ -2018,7 +2029,7 @@ pc20="pc20";pc21="pc21";pc22="pc22";pc23="pc23";
  redPiecePositions[pc21]=58;
  redPiecePositions[pc22]=60;
  redPiecePositions[pc23]=62;
- isKing[pc12]=true;
+ isKing[pc12]=false;
  isKing[pc13]=false;
  isKing[pc14]=false;
  isKing[pc15]=false;
@@ -2039,7 +2050,7 @@ pc20="pc20";pc21="pc21";pc22="pc22";pc23="pc23";
     checkFriendlyasKing[i]=false;
  }
  
- for(let i=0; i<2;i++)
+ for(let i=0; i<8;i++)
  {
     hintSpotsforPawn[i]=false;
  }
