@@ -26,6 +26,7 @@ var friendlyRight=false;
 var hintSpotsforPawn=[];
 var hintspotsforKings=[];
 var checkFriendlyasKing=[];
+var turns=0;
 
 
 function Start()
@@ -36,8 +37,17 @@ function Start()
     iniateallPieces();
     updateScore();
     identifyTurn();
+    CurrentTurns();
 
 }
+function CurrentTurns()
+{
+    document.getElementById('turns').innerHTML=' Turns Taken : '+ turns;
+}
+
+
+
+
 function Reset()
 {
     location.href="game.html";
@@ -451,17 +461,24 @@ function clickPiece(pieceId,cellNumber)
     else if (isKing[oldId]==true)
     {
         if(player1==true)
-            kingMovements(oldId,oldcellnumber,pieceId,cellNumber);
-    else
+        kingMovements(oldId,oldcellnumber,pieceId,cellNumber);
+    else{
         kingMovementsforplayer2(oldId,oldcellnumber,pieceId,cellNumber);
     }
-    else/*string(id) of the first click, oldIdValue= number next to the Pc
+
+        turns++;
+    }
+    else{/*string(id) of the first click, oldIdValue= number next to the Pc
         old
          pieceId will be string of the second click*/
         movePieceto(oldId,oldcellnumber,pieceId,cellNumber,noEnemy);
+        turns++;
+        }
 
-    }
-
+   }
+   
+  
+   CurrentTurns();
 }
 
 
